@@ -1,46 +1,56 @@
-function computerPlay(){
-    const options = [`rock`, `paper`, `scissors`];
-    const randomIndex = Math.floor(Math.random() * options.length);
-    return options[randomIndex];
-}
-//function that plays a single round of Rock,Paper and Scissors
-function playerRound(playerSelection, computerSelection){
-    playerSelection = playerSelection.toLowerCase();
+const computerChoiceDisplay = document.getElementById(`computer-choice`)
+const userChoiceDisplay = document.getElementById(`user-choice`)
+const resultDisplay = document.getElementById(`result`)
+const possibleChoices = document.querySelectorAll(`button`)
+let userChoice
+let computerChoice
+let result
 
-    //determine winner based on Selection
-    if(playerSelection === computerSelection.toLowerCase()){
-        return `It's a TIE!`;
-    } else if(
-        (playerSelection === `rock` && computerSelection === `scissors`)||
-        (playerSelection === `paper` && computerSelection === `rock`)||
-        (playerSelection === `scissors` && computerSelection === `paper`)
-    ){
-        return `You Win! ${playerSelection} beats ${computerSelection}`;
-    } else {
-        return `You LOOSE! ${computerSelection} beats ${playerSelection}`;
+possibleChoices.forEach(possibleChoices => possibleChoices.addEventListener(`click`, (e) => {
+    userChoice = e.target.id 
+    userChoiceDisplay.innerHTML = userChoice
+    generateComputerChoice()
+    getResult()
+}))
+
+function generateComputerChoice(){
+    const randomNumber = Math.floor(Math.random() *3) +1
+    console.log(randomNumber)
+
+    if(randomNumber === 1){
+        computerChoice = `rock`
     }
-}
-//function that plays 5 round game of Rock, paper and scissors
-function game(){
-    let playerScore = 0;
-    let computerScore = 0;
-
-    for(let i=0; i<5; i++) {
-        const playerSelection = prompt(`Choose Rock, Paper or Scissors`);
-        const computerSelection = computerPlay();
-        const result = playerRound(playerSelection, computerSelection);
-        console.log(result);
-
-        if(result.startsWith(`You WIN!`)){
-            playerScore++;
-        } else if(result.startsWith(`You LOOSE`)){
-            computerScore++;
-        }
+    if(randomNumber === 2){
+        computerChoice =`scissors`
     }
-    return result
+    if(randomNumber === 3){
+        computerChoice = `paper`
+    }
+    computerChoiceDisplay.innerHTML = computerChoice
 }
-console.log(game())
-
-
-
-
+function getResult(){
+    userChoice = userChoice.toLowerCase();
+    if(computerChoice === userChoice){
+        result =`It's a TIE!`
+    }
+    if(computerChoice === `rock` && userChoice === `paper`){
+        result =`You WIN!`
+    }
+    if(computerChoice === `rock` && userChoice === `scissors`){
+        result =`You LOOSE!`
+    }
+    if(computerChoice === `paper` && userChoice === `scissors`){
+        result =`You WIN!!`
+    }
+    if(computerChoice === `paper` && userChoice === `rock`){
+        result =`You LOOSE!`
+    }
+    if(computerChoice === `scissors` && userChoice === `rock`){
+        result =`You WIN!`
+    }
+    if(computerChoice === `scissors` && userChoice === `paper`){
+        result =`You LOOSE!`
+    }
+    resultDisplay.innerHTML = result
+} 
+   
