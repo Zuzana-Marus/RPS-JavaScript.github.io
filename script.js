@@ -35,20 +35,15 @@ function getResult(){
     }
     if(computerChoice === `rock` && userChoice === `paper`){
         result =`You WIN!`
-    }
-    if(computerChoice === `rock` && userChoice === `scissors`){
+      }else(computerChoice === `rock` && userChoice === `scissors`){
         result =`You LOOSE!`
-    }
-    if(computerChoice === `paper` && userChoice === `scissors`){
+    }if(computerChoice === `paper` && userChoice === `scissors`){
         result =`You WIN!!`
-    }
-    if(computerChoice === `paper` && userChoice === `rock`){
+      }else(computerChoice === `paper` && userChoice === `rock`){
         result =`You LOOSE!`
-    }
-    if(computerChoice === `scissors` && userChoice === `rock`){
+    }if(computerChoice === `scissors` && userChoice === `rock`){
         result =`You WIN!`
-    }
-    if(computerChoice === `scissors` && userChoice === `paper`){
+      }else(computerChoice === `scissors` && userChoice === `paper`){
         result =`You LOOSE!`
     }
     resultDisplay.innerHTML = result
